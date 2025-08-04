@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # URL to scrape
-url = 'http://quotes.toscrape.com'
+url = 'https://httpbin.org/forms/post'
 response = requests.get(url)
 
 # Check status
@@ -13,8 +13,10 @@ else:
 
 soup = BeautifulSoup(response.text, 'html.parser')
 
-quotes = soup.find_all('span', class_='text')
-authors = soup.find_all('small', class_='author')
+form = soup.find("form")
+inputs = form.find_all("input")
 
-for quote, author in zip(quotes, authors):
-    print(f"{quote.text} — {author.text}")
+for input_tag in inputs:
+    name = input_tag.get("name")
+    input_type = input_tag.get("type")
+    print(f"Field name: {name}, Type: {input_type}")
