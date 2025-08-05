@@ -1,0 +1,6 @@
+langchain
+chromadb
+openai
+firebase-admin
+sentence-transformers
+huggingface-hub
